@@ -1,5 +1,7 @@
 <!-- Modal -->
 <div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- berfungsi sebagai hidden area --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
