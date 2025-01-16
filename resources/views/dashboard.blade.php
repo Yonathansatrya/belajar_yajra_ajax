@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Dashboard')
-
+<link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -10,7 +10,7 @@
                     <div class="col-md-4">
                         <div class="card text-center">
                             <div class="card-header bg-primary text-white">
-                                <i class="fas fa-chart-bar"></i> Total Jenis Barang
+                                <i class='bx bx-wallet icon' ></i> Total Jenis Barang
                             </div>
                             <div class="card-body">
                                 <p>Total Items: {{ \App\Models\Item::count() }}</p>
