@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Livewire\Attributes\Validate;
 use Yajra\DataTables\Facades\DataTables;
 
 class ItemController extends Controller
@@ -48,21 +49,17 @@ class ItemController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'item_name' => 'required',
-            'type_item' => 'required',
-            'total_item' => 'required',
+    {   
+        $validateData = $request->validate([
+            'item_name' => 'required|string',
+            'type_item' => 'required|string',
+            'total_item' => 'required|integer',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 442);
-        }
-
         $Items = Item::create([
-            'item_name'     => $request->item_name,
-            'type_item'     => $request->type_item,
-            'total_item'    => $request->total_item
+            'item_name'  => $validateData['item_name'],
+            'type_item'  => $validateData['type_item'],
+            'total_item' => $validateData['total_item'],
         ]);
 
         return response()->json([
@@ -94,20 +91,17 @@ class ItemController extends Controller
             ], 404);
         }
 
-        $validator = Validator::make($request->all(), [
-            'item_name' =>  'required',
-            'type_item' =>  'required',
-            'total_item' =>  'required'
+        $validateData = $request->validate([
+           'item_name' => 'required|string',
+            'type_item' => 'required|string',
+            'total_item' => 'required|integer'
         ]);
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 442);
-        }
 
         $Items->update([
-            'item_name' => $request->item_name,
-            'type_item' => $request->type_item,
-            'total_item' => $request->total_item
+            'item_name'  => $validateData['item_name'],
+            'type_item'  => $validateData['type_item'],
+            'total_item' => $validateData['total_item'],
         ]);
 
         return response()->json([

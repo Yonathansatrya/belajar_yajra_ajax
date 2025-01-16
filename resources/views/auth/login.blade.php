@@ -64,13 +64,21 @@
                 error: function(xhr) {
                     const errorMessage = xhr.responseJSON?.message ||
                         'Login gagal. Periksa email dan password Anda.';
+
                     Swal.fire({
-                        title: "Login Gagal",
-                        text: errorMessage,
                         icon: "error",
-                        timer: 3000,
-                        showConfirmButton: true
+                        title: "Oops...",
+                        text: errorMessage,
+                        footer: '<a href="#">apakah kamu melupakan password mu ??</a>'
                     });
+                    // Swal.fire({
+                    //     title: "Login Gagal",
+                    //     text: errorMessage,
+                    //     icon: "error",
+                    //     timer: 3000,
+                    //     showConfirmButton: true
+                    //     footer: '<a href="#">apakah kamu melupakan password mu ??</a>'
+                    // });
                 }
             });
         });

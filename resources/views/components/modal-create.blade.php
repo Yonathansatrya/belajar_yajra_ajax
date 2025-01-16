@@ -6,7 +6,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">TAMBAH ITEM</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                </button>                
+                </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
@@ -92,14 +92,33 @@
                 $("#modal-create").modal("hide");
             },
             error: function(error) {
-                if (error.responseJSON.title) {
-                    $("#alert-title").removeClass("d-none").addClass("d-block").html(error
-                        .responseJSON.title[0]);
-                }
+                if (error.status === 422) {
+                    let errors = error.responseJSON.errors;
+                    let errorMessage = '';
 
-                if (error.responseJSON.title) {
-                    $("#alert-content").removeClass("d-none").addClass("d-block").html(error
-                        .responseJSON.title[0]);
+                    if (errors.item_name) {
+                        errorMessage += `<strong>Item Name:</strong> ${errors.item_name[0]}<br>`;
+                    }
+                    if (errors.type_item) {
+                        errorMessage += `<strong>Type Item:</strong> ${errors.type_item[0]}<br>`;
+                    }
+                    if (errors.total_item) {
+                        errorMessage += `<strong>Total Item:</strong> ${errors.total_item[0]}<br>`;
+                    }
+
+                    Swal.fire({
+                        title: "Eror prend!",
+                        html: errorMessage,
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Unexpected Error!",
+                        text: "An unexpected error occurred. Please try again later.",
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
                 }
             }
         });

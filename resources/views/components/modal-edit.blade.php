@@ -117,29 +117,34 @@
 
             },
             error: function(error) {
+                let errorMessage = '';
 
-                if (error.responseJSON.item_name[0]) {
-
-                    $('#alert-item_name-edit').removeClass('d-none');
-                    $('#alert-item_name-edit').addClass('d-block');
-                    $('#alert-item_name-edit').html(error.responseJSON.item_name[0]);
+                if (error.responseJSON && error.responseJSON.item_name) {
+                    errorMessage +=
+                        `<strong>Item Name:</strong> ${error.responseJSON.item_name[0]}<br>`;
                 }
 
-                if (error.responseJSON.type_item[0]) {
-                    $('#alert-type_item-edit').removeClass('d-none');
-                    $('#alert-type_item-edit').addClass('d-block');
-                    $('#alert-type_item-edit').html(error.responseJSON.type_item[0]);
+                if (error.responseJSON && error.responseJSON.type_item) {
+                    errorMessage +=
+                        `<strong>Type Item:</strong> ${error.responseJSON.type_item[0]}<br>`;
                 }
 
-                if (error.responseJSON.total_item[0]) {
-                    $('#alert-total_item-edit').removeClass('d-none');
-                    $('#alert-total_item-edit').addClass('d-block');
-                    $('#alert-total_item-edit').html(error.responseJSON.total_item[0]);
+                if (error.responseJSON && error.responseJSON.total_item) {
+                    errorMessage +=
+                        `<strong>Total Item:</strong> ${error.responseJSON.total_item[0]}<br>`;
                 }
 
+                if (!errorMessage) {
+                    errorMessage = 'An unexpected error occurred. Please try again later.';
+                }
+
+                Swal.fire({
+                    title: "Validation Error!",
+                    html: errorMessage,
+                    icon: "error",
+                    confirmButtonText: "OK"
+                });
             }
-
         });
-
     });
 </script>
