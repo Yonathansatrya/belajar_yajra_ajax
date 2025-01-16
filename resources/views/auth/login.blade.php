@@ -68,7 +68,7 @@
                         title: "Login Gagal",
                         text: errorMessage,
                         icon: "error",
-                        timer: 4000,
+                        timer: 3000,
                         showConfirmButton: true
                     });
                 }

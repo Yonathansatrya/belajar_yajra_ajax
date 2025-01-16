@@ -20,7 +20,6 @@
                         "_token": token
                     },
                     success: function(response) {
-
                         Swal.fire({
                             type: 'success',
                             icon: 'success',
@@ -29,8 +28,6 @@
                             timer: 3000
                         });
                         $(`#index_${item_id}`).remove();
-
-                        $('#data').DataTable().ajax.reload();
                     }
                 });
 

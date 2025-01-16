@@ -61,7 +61,6 @@
                 $('#type_item-edit').val(response.data.type_item);
                 $('#total_item-edit').val(response.data.total_item);
 
-
                 $('#modal-edit').modal('show');
             }
         });
@@ -89,7 +88,6 @@
             },
 
             success: function(response) {
-
                 Swal.fire({
                     type: 'success',
                     icon: 'success',
@@ -97,8 +95,6 @@
                     showConfirmButton: false,
                     timer: 3000
                 });
-
-                $('#data').DataTable().ajax.reload();
 
                 let items = `
                     <tr id="index_${response.data.id}">

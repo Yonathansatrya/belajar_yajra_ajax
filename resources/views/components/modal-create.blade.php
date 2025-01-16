@@ -70,8 +70,6 @@
                     timer: 3000
                 });
 
-                $('#data').DataTable().ajax.reload();
-
                 let items = `
                     <tr id="index_${response.data.id}">
                         <td>${response.data.item_name}</td>

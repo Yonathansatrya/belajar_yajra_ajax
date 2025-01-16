@@ -36,44 +36,39 @@
         @include('components.modal-create')
         @include('components.modal-edit')
         @include('components.modal-destroy')
-
-        <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css">
-        <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
-        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
         <script>
-            new DataTable('#data', {
-                
-                ajax: '/item',
-                columns: [
-                    {
+            let table = new DataTable('#data', {
+                ajax: '/item', 
+                columns: [{
                         data: 'item_name',
                     },
                     {
-                        data: 'type_item',  
-                        orderable: false  
+                        data: 'type_item', 
+                        orderable: false
                     },
                     {
-                        data: 'total_item', 
+                        data: 'total_item',
                     },
                     {
                         data: 'color_item', 
-                        orderable: false 
+                        orderable: false
                     },
                     {
                         data: 'id',
                         render: function(data, type, row) {
+                           
                             return `
-                                <a href="javascript:void(0)" id="btn-edit-item" data-id="${data}" class="btn btn-primary btn-sm">EDIT</a>
-                                <a href="javascript:void(0)" id="btn-delete-item" data-id="${data}" class="btn btn-danger btn-sm">DELETE</a>
-                               ` ;
+                    <a href="javascript:void(0)" id="btn-edit-item" data-id="${data}" class="btn btn-primary btn-sm">EDIT</a>
+                    <a href="javascript:void(0)" id="btn-delete-item" data-id="${data}" class="btn btn-danger btn-sm">DELETE</a>
+                `;
                         }
                     }
                 ]
             });
 
-            $('#reload-button').on('click', function(){
-                table.ajax.reload(null, false);
-            });
+            setInterval(function() {
+                table.ajax.reload(null, false); 
+            }, 2000);
         </script>
     </div>
 @endsection
